@@ -1,0 +1,53 @@
+<%- include('../partials/header', { title: 'Produits' }) %>
+
+<div class="page-header">
+    <div>
+        <h2 class="page-title">Liste des produits</h2>
+        <p class="page-subtitle">Gestion complète des produits enregistrés dans la base de données.</p>
+    </div>
+
+    <% if (user) { %>
+        <div>
+            <a href="/products/add" class="btn btn-primary">Ajouter un produit</a>
+        </div>
+    <% } %>
+</div>
+
+<div class="table-card">
+    <% if (products.length === 0) { %>
+        <p class="mb-0">Aucun produit disponible pour le moment.</p>
+    <% } else { %>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <% if (user) { %>
+                            <th class="text-end">Actions</th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(function(product) { %>
+                        <tr>
+                            <td><%= product.id %></td>
+                            <td><strong><%= product.name %></strong></td>
+                            <td><%= product.price %> $</td>
+
+                            <% if (user) { %>
+                                <td class="text-end">
+                                    <a href="/products/edit/<%= product.id %>" class="btn btn-warning btn-sm">Modifier</a>
+                                    <a href="/products/delete/<%= product.id %>" class="btn btn-danger btn-sm">Supprimer</a>
+                                </td>
+                            <% } %>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

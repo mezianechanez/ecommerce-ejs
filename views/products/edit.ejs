@@ -1,0 +1,23 @@
+<%- include('../partials/header', { title: 'Modifier un produit' }) %>
+
+<h2>Modifier un produit</h2>
+
+<% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="/products/edit/<%= product.id %>" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Nom du produit :</label>
+        <input type="text" name="name" class="form-control" value="<%= product.name %>">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Prix du produit :</label>
+        <input type="number" step="0.01" name="price" class="form-control" value="<%= product.price %>">
+    </div>
+
+    <button type="submit" class="btn btn-warning">Modifier</button>
+</form>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,51 @@
+<%- include('../partials/header', { title: 'Catégories' }) %>
+
+<div class="page-header">
+    <div>
+        <h2 class="page-title">Liste des catégories</h2>
+        <p class="page-subtitle">Gestion des catégories utilisées dans l’application.</p>
+    </div>
+
+    <% if (user) { %>
+        <div>
+            <a href="/categories/add" class="btn btn-primary">Ajouter une catégorie</a>
+        </div>
+    <% } %>
+</div>
+
+<div class="table-card">
+    <% if (categories.length === 0) { %>
+        <p class="mb-0">Aucune catégorie disponible pour le moment.</p>
+    <% } else { %>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom</th>
+                        <% if (user) { %>
+                            <th class="text-end">Actions</th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% categories.forEach(function(category) { %>
+                        <tr>
+                            <td><%= category.id %></td>
+                            <td><strong><%= category.name %></strong></td>
+
+                            <% if (user) { %>
+                                <td class="text-end">
+                                    <a href="/categories/edit/<%= category.id %>" class="btn btn-warning btn-sm">Modifier</a>
+                                    <a href="/categories/delete/<%= category.id %>" class="btn btn-danger btn-sm">Supprimer</a>
+                                </td>
+                            <% } %>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

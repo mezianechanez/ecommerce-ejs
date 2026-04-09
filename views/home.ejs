@@ -1,0 +1,57 @@
+<%- include('partials/header', { title: 'Accueil' }) %>
+
+<section class="hero-section">
+    <div class="row align-items-center">
+        <div class="col-lg-7">
+            <h1 class="hero-title">Bienvenue sur notre plateforme e-commerce</h1>
+            <p class="hero-text">
+                Cette application permet de gérer les produits, les catégories et les utilisateurs
+                à travers une interface simple, moderne et sécurisée.
+            </p>
+
+            <div class="mt-4">
+                <a href="/products" class="btn btn-primary me-2">Voir les produits</a>
+                <a href="/categories" class="btn btn-outline-primary">Voir les catégories</a>
+            </div>
+        </div>
+
+        <div class="col-lg-5 mt-4 mt-lg-0">
+            <div class="info-card">
+                <h3 class="mb-3">Fonctionnalités principales</h3>
+                <ul class="mb-0">
+                    <li>Gestion des produits</li>
+                    <li>Gestion des catégories</li>
+                    <li>Authentification utilisateur</li>
+                    <li>Ajout, modification et suppression sécurisés</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mt-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <h4>Produits</h4>
+                <p>Afficher, ajouter, modifier et supprimer les produits enregistrés dans la base de données.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-card">
+                <h4>Catégories</h4>
+                <p>Organiser les produits dans des catégories pour améliorer la structure de l’application.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="feature-card">
+                <h4>Sécurité</h4>
+                <p>Limiter les actions sensibles aux utilisateurs connectés grâce aux sessions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

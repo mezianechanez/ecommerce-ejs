@@ -1,0 +1,131 @@
+body {
+    background-color: #f4f6f9;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.custom-navbar {
+    background: linear-gradient(90deg, #1f3c88, #2952a3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+}
+
+.nav-link {
+    color: #ffffff !important;
+    margin-left: 8px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.user-welcome {
+    font-weight: 600;
+    color: #ffd166 !important;
+}
+
+.hero-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #1f3c88;
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+.info-card,
+.feature-card,
+.table-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card h4,
+.info-card h3 {
+    color: #1f3c88;
+    margin-bottom: 12px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.page-title {
+    margin-bottom: 5px;
+    color: #1f3c88;
+    font-weight: bold;
+}
+
+.page-subtitle {
+    margin-bottom: 0;
+    color: #666;
+}
+
+.table thead {
+    background-color: #eef3fb;
+}
+
+.table thead th {
+    color: #1f3c88;
+}
+
+.btn-primary {
+    background-color: #1f3c88;
+    border-color: #1f3c88;
+}
+
+.btn-primary:hover {
+    background-color: #17306d;
+    border-color: #17306d;
+}
+
+.site-footer {
+    margin-top: 40px;
+    padding: 22px 0;
+    background-color: #ffffff;
+    border-top: 1px solid #e5e5e5;
+    color: #666;
+}
+
+form {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 24px;
+    }
+
+    .hero-title {
+        font-size: 1.7rem;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

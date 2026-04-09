@@ -1,0 +1,18 @@
+<%- include('../partials/header', { title: 'Modifier une catégorie' }) %>
+
+<h2>Modifier une catégorie</h2>
+
+<% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<form action="/categories/edit/<%= category.id %>" method="POST">
+    <div class="mb-3">
+        <label class="form-label">Nom de la catégorie :</label>
+        <input type="text" name="name" class="form-control" value="<%= category.name %>">
+    </div>
+
+    <button type="submit" class="btn btn-warning">Modifier</button>
+</form>
+
+<%- include('../partials/footer') %>
