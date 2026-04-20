@@ -1,67 +1,149 @@
 body {
-    background-color: #f4f6f9;
-    color: #212529;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: #d8cbf5; /* Soft lavender background */
+    color: #1a103c;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Navbar */
 .custom-navbar {
-    background: linear-gradient(90deg, #1f3c88, #2952a3);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: transparent;
+    box-shadow: none;
+    padding-top: 15px;
 }
 
 .navbar-brand {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    color: #1a103c !important;
 }
 
 .nav-link {
-    color: #ffffff !important;
-    margin-left: 8px;
+    color: #1a103c !important;
+    font-weight: 600;
+    margin-left: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
 }
 
 .nav-link:hover {
-    text-decoration: underline;
+    color: #5533ff !important;
 }
 
 .user-welcome {
     font-weight: 600;
-    color: #ffd166 !important;
+    color: #1a103c !important;
 }
 
+/* Replace btn-light for navbar */
+.btn-light {
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid #1a103c;
+    color: #1a103c;
+}
+.btn-outline-light {
+    border-color: #1a103c;
+    color: #1a103c;
+}
+
+/* Home Page Hero */
 .hero-section {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 40px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    background: transparent;
+    padding: 60px 0;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
 }
 
 .hero-title {
-    font-size: 2.2rem;
+    font-size: 4rem;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    color: #1f3c88;
-    margin-bottom: 20px;
+    color: #1a103c;
+    margin-bottom: 25px;
 }
 
 .hero-text {
-    font-size: 1.05rem;
-    color: #555;
+    font-size: 1rem;
+    color: #3b3a4e;
     line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 30px;
 }
 
+/* Buttons */
+.btn-shop {
+    background-color: #e2d9fa;
+    border: 2px solid #1a103c;
+    color: #1a103c;
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+.btn-shop:hover {
+    background-color: #c9bcf0;
+    color: #1a103c;
+}
+
+.btn-dark-buy {
+    background-color: #1a103c;
+    border: 2px solid #1a103c;
+    color: #ffffff;
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-transform: uppercase;
+}
+.btn-dark-buy:hover {
+    background-color: #271a5c;
+    color: #ffffff;
+}
+
+/* Hero Image */
+.custom-hero-img {
+    max-width: 100%;
+    margin-left: 0;
+    padding-left: 20px;
+    filter: drop-shadow(0 15px 20px rgba(0,0,0,0.1));
+}
+
+/* Additional elements */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+.social-icons span {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #1a103c;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Cards (Glassmorphism) */
 .info-card,
 .feature-card,
 .table-card {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 14px;
     padding: 24px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
 .feature-card h4,
 .info-card h3 {
-    color: #1f3c88;
+    color: #1a103c;
     margin-bottom: 12px;
+    font-weight: bold;
 }
 
+/* Table and pages */
 .page-header {
     display: flex;
     justify-content: space-between;
@@ -73,7 +155,7 @@ body {
 
 .page-title {
     margin-bottom: 5px;
-    color: #1f3c88;
+    color: #1a103c;
     font-weight: bold;
 }
 
@@ -83,47 +165,49 @@ body {
 }
 
 .table thead {
-    background-color: #eef3fb;
+    background-color: rgba(255,255,255,0.7);
 }
 
 .table thead th {
-    color: #1f3c88;
+    color: #1a103c;
 }
 
 .btn-primary {
-    background-color: #1f3c88;
-    border-color: #1f3c88;
+    background-color: #1a103c;
+    border-color: #1a103c;
 }
 
 .btn-primary:hover {
-    background-color: #17306d;
-    border-color: #17306d;
+    background-color: #271a5c;
+    border-color: #271a5c;
 }
 
 .site-footer {
     margin-top: 40px;
     padding: 22px 0;
-    background-color: #ffffff;
-    border-top: 1px solid #e5e5e5;
-    color: #666;
+    background-color: transparent;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    color: #3b3a4e;
+    text-align: center;
 }
 
 form {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
     padding: 24px;
     border-radius: 14px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 768px) {
-    .hero-section {
-        padding: 24px;
-    }
-
     .hero-title {
-        font-size: 1.7rem;
+        font-size: 2.5rem;
     }
-
+    .custom-hero-img {
+        max-width: 100%;
+        margin-left: 0;
+        margin-top: 30px;
+    }
     .page-header {
         flex-direction: column;
         align-items: flex-start;
