@@ -39,7 +39,10 @@
                     </li>
                 <% } else { %>
                     <li class="nav-item">
-                        <span class="nav-link user-welcome">Bonjour <%= user.name %></span>
+                        <a class="nav-link" href="/users">Utilisateurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link user-welcome">Bonjour <%= user.name %> (<%= user.role %>)</span>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-outline-light btn-sm ms-lg-2 mt-2 mt-lg-0" href="/auth/logout">Déconnexion</a>
@@ -51,3 +54,5 @@
 </nav>
 
 <div class="container py-4">
+
+<%- include('flash') %>

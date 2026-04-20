@@ -1,0 +1,47 @@
+<%- include('../partials/header', { title: 'Ajouter un utilisateur' }) %>
+
+<div class="page-header">
+    <h2 class="page-title">Ajouter un Utilisateur</h2>
+</div>
+
+<% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/users/add" method="POST" class="glass">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Nom complet</label>
+                <input type="text" name="name" class="form-control" required placeholder="John Doe">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">Email</label>
+                <input type="email" name="email" class="form-control" required placeholder="john@example.com">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">Mot de passe</label>
+                <input type="password" name="password" class="form-control" required placeholder="••••••••">
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">Rôle</label>
+                <select name="role" class="form-select">
+                    <option value="user">Utilisateur</option>
+                    <option value="admin">Administrateur</option>
+                </select>
+            </div>
+
+            <hr class="my-4">
+            
+            <div class="d-flex justify-content-between">
+                <a href="/users" class="btn btn-secondary">Annuler</a>
+                <button type="submit" class="btn btn-dark-buy">Créer l'utilisateur</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

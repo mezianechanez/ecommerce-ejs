@@ -1,0 +1,55 @@
+<%- include('../partials/header', { title: 'Liste des utilisateurs' }) %>
+
+<div class="page-header">
+    <div>
+        <h2 class="page-title">Utilisateurs</h2>
+        <p class="page-subtitle">Gestion des comptes utilisateurs</p>
+    </div>
+    <% if (user && user.role === 'admin') { %>
+        <a href="/users/add" class="btn btn-shop">+ Nouvel Utilisateur</a>
+    <% } %>
+</div>
+
+<div class="table-card glass mt-4">
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Rôle</th>
+                    <% if (user && user.role === 'admin') { %>
+                        <th class="text-end">Actions</th>
+                    <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (users.length === 0) { %>
+                    <tr>
+                        <td colspan="5" class="text-center py-4">Aucun utilisateur trouvé.</td>
+                    </tr>
+                <% } else { %>
+                    <% users.forEach(u => { %>
+                        <tr>
+                            <td><%= u.id %></td>
+                            <td class="fw-bold"><%= u.name %></td>
+                            <td><%= u.email %></td>
+                            <td><span class="badge bg-secondary"><%= u.role %></span></td>
+                            <% if (user && user.role === 'admin') { %>
+                                <td class="text-end">
+                                    <a href="/users/edit/<%= u.id %>" class="btn btn-sm btn-outline-primary">Modifier</a>
+                                    <form action="/users/delete/<%= u.id %>?_method=DELETE" method="POST" class="d-inline p-0 shadow-none border-0 bg-transparent" style="backdrop-filter: none;" onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                    </form>
+                                </td>
+                            <% } %>
+                        </tr>
+                    <% }) %>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

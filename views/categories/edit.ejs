@@ -1,18 +1,28 @@
 <%- include('../partials/header', { title: 'Modifier une catégorie' }) %>
 
-<h2>Modifier une catégorie</h2>
+<h2 class="page-title">Modifier une catégorie</h2>
 
-<% if (error) { %>
-    <div class="alert alert-danger"><%= error %></div>
+<% if (errors && errors.length > 0) { %>
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            <% errors.forEach(e => { %>
+                <li><%= e.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
 <% } %>
 
-<form action="/categories/edit/<%= category.id %>" method="POST">
-    <div class="mb-3">
-        <label class="form-label">Nom de la catégorie :</label>
-        <input type="text" name="name" class="form-control" value="<%= category.name %>">
-    </div>
+<div class="row">
+    <div class="col-md-6">
+        <form action="/categories/edit/<%= category.id %>?_method=PUT" method="POST" class="glass">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Nom de la catégorie :</label>
+                <input type="text" name="name" class="form-control" value="<%= category.name %>">
+            </div>
 
-    <button type="submit" class="btn btn-warning">Modifier</button>
-</form>
+            <button type="submit" class="btn btn-warning">Modifier</button>
+        </form>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

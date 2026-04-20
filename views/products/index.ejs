@@ -24,7 +24,7 @@
                         <th>ID</th>
                         <th>Nom</th>
                         <th>Prix</th>
-                        <% if (user) { %>
+                        <% if (user && user.role === 'admin') { %>
                             <th class="text-end">Actions</th>
                         <% } %>
                     </tr>
@@ -36,10 +36,12 @@
                             <td><strong><%= product.name %></strong></td>
                             <td><%= product.price %> $</td>
 
-                            <% if (user) { %>
+                            <% if (user && user.role === 'admin') { %>
                                 <td class="text-end">
                                     <a href="/products/edit/<%= product.id %>" class="btn btn-warning btn-sm">Modifier</a>
-                                    <a href="/products/delete/<%= product.id %>" class="btn btn-danger btn-sm">Supprimer</a>
+                                    <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST" class="d-inline p-0 shadow-none border-0 bg-transparent" style="backdrop-filter: none;" onsubmit="return confirm('Voulez-vous vraiment supprimer ce produit ?');">
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                                    </form>
                                 </td>
                             <% } %>
                         </tr>

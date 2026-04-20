@@ -1,30 +1,38 @@
 <%- include('../partials/header', { title: 'Inscription' }) %>
 
-<h2>Inscription</h2>
+<h2 class="page-title">Inscription</h2>
 
-<form action="/auth/register" method="POST">
-    <div>
-        <label>Nom :</label>
-        <input type="text" name="name" required>
+<% if (errors && errors.length > 0) { %>
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            <% errors.forEach(e => { %>
+                <li><%= e.msg %></li>
+            <% }) %>
+        </ul>
     </div>
+<% } %>
 
-    <br>
+<div class="row">
+    <div class="col-md-6">
+        <form action="/auth/register" method="POST" class="glass">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Nom :</label>
+                <input type="text" name="name" class="form-control" placeholder="Votre nom">
+            </div>
 
-    <div>
-        <label>Email :</label>
-        <input type="email" name="email" required>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Email :</label>
+                <input type="email" name="email" class="form-control" placeholder="votre@email.com">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Mot de passe (min. 6 caractères) :</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="btn btn-dark-buy">S'inscrire</button>
+        </form>
     </div>
-
-    <br>
-
-    <div>
-        <label>Mot de passe :</label>
-        <input type="password" name="password" required>
-    </div>
-
-    <br>
-
-    <button type="submit">S'inscrire</button>
-</form>
+</div>
 
 <%- include('../partials/footer') %>
