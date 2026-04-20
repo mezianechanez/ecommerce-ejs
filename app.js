@@ -54,7 +54,7 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 
 // sync DB
-sequelize.sync()
+sequelize.sync({ alter: true })
     .then(() => {
         console.log('Base synchronisée');
 

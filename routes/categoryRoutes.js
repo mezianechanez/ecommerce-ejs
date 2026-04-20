@@ -4,6 +4,7 @@ const router = express.Router();
 
 const Category = require('../models/Category');
 const { requireAuth, requireAdmin } = require('../middleware/auth');
+const upload = require('../middleware/upload');
 
 // afficher la liste (tout le monde)
 router.get('/', async (req, res) => {
@@ -16,8 +17,8 @@ router.get('/add', requireAuth, (req, res) => {
     res.render('categories/add', { errors: [] });
 });
 
-// ajouter catégorie (connecté)
-router.post('/add', requireAuth, [
+// ajouter catégorie (connecté) — avec upload image
+router.post('/add', requireAuth, upload.single('image'), [
     body('name')
         .trim()
         .notEmpty().withMessage('Le nom de la catégorie est obligatoire.')
@@ -29,7 +30,8 @@ router.post('/add', requireAuth, [
     }
 
     await Category.create({
-        name: req.body.name.trim()
+        name: req.body.name.trim(),
+        image: req.file ? '/public/uploads/' + req.file.filename : null
     });
 
     req.flash('success', 'Catégorie ajoutée avec succès.');
@@ -46,8 +48,8 @@ router.get('/edit/:id', requireAdmin, async (req, res) => {
     res.render('categories/edit', { category, errors: [] });
 });
 
-// modifier catégorie (admin seulement) - PUT
-router.put('/edit/:id', requireAdmin, [
+// modifier catégorie (admin seulement) - PUT avec upload image
+router.put('/edit/:id', requireAdmin, upload.single('image'), [
     body('name')
         .trim()
         .notEmpty().withMessage('Le nom de la catégorie est obligatoire.')
@@ -65,6 +67,11 @@ router.put('/edit/:id', requireAdmin, [
     }
 
     category.name = req.body.name.trim();
+
+    if (req.file) {
+        category.image = '/public/uploads/' + req.file.filename;
+    }
+
     await category.save();
 
     req.flash('success', 'Catégorie modifiée avec succès.');

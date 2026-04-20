@@ -22,6 +22,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Image</th>
                         <th>Nom</th>
                         <% if (user && user.role === 'admin') { %>
                             <th class="text-end">Actions</th>
@@ -32,6 +33,13 @@
                     <% categories.forEach(function(category) { %>
                         <tr>
                             <td><%= category.id %></td>
+                            <td>
+                                <% if (category.image) { %>
+                                    <img src="<%= category.image %>" alt="<%= category.name %>" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                <% } else { %>
+                                    <span class="text-muted">—</span>
+                                <% } %>
+                            </td>
                             <td><strong><%= category.name %></strong></td>
 
                             <% if (user && user.role === 'admin') { %>

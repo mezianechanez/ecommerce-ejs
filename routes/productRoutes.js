@@ -4,6 +4,7 @@ const router = express.Router();
 
 const Product = require('../models/Product');
 const { requireAuth, requireAdmin } = require('../middleware/auth');
+const upload = require('../middleware/upload');
 
 // afficher la liste (tout le monde)
 router.get('/', async (req, res) => {
@@ -16,8 +17,8 @@ router.get('/add', requireAuth, (req, res) => {
     res.render('products/add', { errors: [] });
 });
 
-// ajouter produit (connecté)
-router.post('/add', requireAuth, [
+// ajouter produit (connecté) — avec upload image
+router.post('/add', requireAuth, upload.single('image'), [
     body('name')
         .trim()
         .notEmpty().withMessage('Le nom du produit est obligatoire.'),
@@ -32,7 +33,8 @@ router.post('/add', requireAuth, [
 
     await Product.create({
         name: req.body.name.trim(),
-        price: req.body.price
+        price: req.body.price,
+        image: req.file ? '/public/uploads/' + req.file.filename : null
     });
 
     req.flash('success', 'Produit ajouté avec succès.');
@@ -49,8 +51,8 @@ router.get('/edit/:id', requireAdmin, async (req, res) => {
     res.render('products/edit', { product, errors: [] });
 });
 
-// modifier produit (admin seulement) - PUT
-router.put('/edit/:id', requireAdmin, [
+// modifier produit (admin seulement) - PUT avec upload image
+router.put('/edit/:id', requireAdmin, upload.single('image'), [
     body('name')
         .trim()
         .notEmpty().withMessage('Le nom du produit est obligatoire.'),
@@ -71,6 +73,11 @@ router.put('/edit/:id', requireAdmin, [
 
     product.name = req.body.name.trim();
     product.price = req.body.price;
+
+    // mettre à jour l'image seulement si une nouvelle est envoyée
+    if (req.file) {
+        product.image = '/public/uploads/' + req.file.filename;
+    }
 
     await product.save();
 

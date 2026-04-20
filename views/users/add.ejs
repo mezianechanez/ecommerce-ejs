@@ -4,8 +4,14 @@
     <h2 class="page-title">Ajouter un Utilisateur</h2>
 </div>
 
-<% if (error) { %>
-    <div class="alert alert-danger"><%= error %></div>
+<% if (errors && errors.length > 0) { %>
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            <% errors.forEach(e => { %>
+                <li><%= e.msg %></li>
+            <% }) %>
+        </ul>
+    </div>
 <% } %>
 
 <div class="row">

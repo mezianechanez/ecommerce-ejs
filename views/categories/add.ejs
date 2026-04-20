@@ -14,10 +14,15 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form action="/categories/add" method="POST" class="glass">
+        <form action="/categories/add" method="POST" enctype="multipart/form-data" class="glass">
             <div class="mb-3">
                 <label class="form-label fw-bold">Nom de la catégorie :</label>
                 <input type="text" name="name" class="form-control" placeholder="Nom de la catégorie">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Image de la catégorie :</label>
+                <input type="file" name="image" class="form-control" accept="image/*">
             </div>
 
             <button type="submit" class="btn btn-success">Ajouter</button>

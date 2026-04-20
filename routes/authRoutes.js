@@ -97,6 +97,48 @@ router.post('/login', [
     res.redirect('/');
 });
 
+// page mot de passe oublié
+router.get('/forgot-password', (req, res) => {
+    res.render('auth/forgot-password', { errors: [] });
+});
+
+// réinitialiser le mot de passe
+router.post('/forgot-password', [
+    body('email')
+        .trim()
+        .isEmail().withMessage('Veuillez entrer un email valide.')
+        .normalizeEmail(),
+    body('password')
+        .isLength({ min: 6 }).withMessage('Le mot de passe doit contenir au moins 6 caractères.'),
+    body('password_confirm')
+        .custom((value, { req }) => {
+            if (value !== req.body.password) {
+                throw new Error('Les mots de passe ne correspondent pas.');
+            }
+            return true;
+        })
+], async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.render('auth/forgot-password', { errors: errors.array() });
+    }
+
+    const user = await User.findOne({ where: { email: req.body.email } });
+
+    if (!user) {
+        return res.render('auth/forgot-password', {
+            errors: [{ msg: 'Aucun compte trouvé avec cet email.' }]
+        });
+    }
+
+    user.password = await bcrypt.hash(req.body.password, 10);
+    await user.save();
+
+    req.flash('success', 'Mot de passe réinitialisé avec succès ! Vous pouvez maintenant vous connecter.');
+    res.redirect('/auth/login');
+});
+
 // déconnexion
 router.get('/logout', (req, res) => {
     req.session.destroy(() => {

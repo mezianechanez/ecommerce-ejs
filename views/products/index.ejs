@@ -22,6 +22,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Image</th>
                         <th>Nom</th>
                         <th>Prix</th>
                         <% if (user && user.role === 'admin') { %>
@@ -33,6 +34,13 @@
                     <% products.forEach(function(product) { %>
                         <tr>
                             <td><%= product.id %></td>
+                            <td>
+                                <% if (product.image) { %>
+                                    <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                <% } else { %>
+                                    <span class="text-muted">—</span>
+                                <% } %>
+                            </td>
                             <td><strong><%= product.name %></strong></td>
                             <td><%= product.price %> $</td>
 

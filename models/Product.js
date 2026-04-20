@@ -9,6 +9,10 @@ const Product = sequelize.define('Product', {
     price: {
         type: DataTypes.FLOAT,
         allowNull: false
+    },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 });
 

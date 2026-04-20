@@ -14,10 +14,22 @@
 
 <div class="row">
     <div class="col-md-6">
-        <form action="/categories/edit/<%= category.id %>?_method=PUT" method="POST" class="glass">
+        <form action="/categories/edit/<%= category.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="glass">
             <div class="mb-3">
                 <label class="form-label fw-bold">Nom de la catégorie :</label>
                 <input type="text" name="name" class="form-control" value="<%= category.name %>">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Image de la catégorie :</label>
+                <% if (category.image) { %>
+                    <div class="mb-2">
+                        <img src="<%= category.image %>" alt="Image actuelle" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px;">
+                        <br><small class="text-muted">Image actuelle</small>
+                    </div>
+                <% } %>
+                <input type="file" name="image" class="form-control" accept="image/*">
+                <small class="text-muted">Laissez vide pour garder l'image actuelle.</small>
             </div>
 
             <button type="submit" class="btn btn-warning">Modifier</button>
